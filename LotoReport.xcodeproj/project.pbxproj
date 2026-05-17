@@ -302,7 +302,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.widgetbuild;
 				PRODUCT_NAME = LotoReport;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -387,7 +387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.widgetbuild;
 				PRODUCT_NAME = LotoReport;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -406,7 +406,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.widgetbuild.widget;
 				PRODUCT_NAME = LotoReportWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -426,7 +426,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.app.widget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lotoreport.widgetbuild.widget;
 				PRODUCT_NAME = LotoReportWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

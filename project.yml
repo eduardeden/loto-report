@@ -37,7 +37,7 @@ targets:
         embed: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.lotoreport.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.lotoreport.widgetbuild
         PRODUCT_NAME: LotoReport
         INFOPLIST_KEY_CFBundleDisplayName: "Loto Report"
         CODE_SIGN_STYLE: Automatic
@@ -54,7 +54,6 @@ targets:
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
-          NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).LotoNetWidgetBundle"
     sources:
       - path: ios/LotoNetWidget
       - path: ios/Shared
@@ -64,7 +63,7 @@ targets:
       - ios/Shared/Resources/BootstrapReport.json
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.lotoreport.app.widget
+        PRODUCT_BUNDLE_IDENTIFIER: com.lotoreport.widgetbuild.widget
         PRODUCT_NAME: LotoReportWidget
         INFOPLIST_KEY_CFBundleDisplayName: "Loto Report Widget"
         CODE_SIGN_STYLE: Automatic
