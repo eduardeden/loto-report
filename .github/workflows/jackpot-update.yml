@@ -8,6 +8,10 @@ on:
     # 22:07 Europe/Bucharest during standard time (UTC+2)
     - cron: "7 20 * * 0,4"
 
+concurrency:
+  group: data-update-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -59,4 +63,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore(data): update jackpot report"
-          git push
+          git push || (git pull --rebase origin main && git push)

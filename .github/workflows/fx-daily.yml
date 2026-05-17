@@ -8,6 +8,10 @@ on:
     # 13:17 Europe/Bucharest during standard time (UTC+2)
     - cron: "17 11 * * *"
 
+concurrency:
+  group: data-update-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -59,4 +63,4 @@ jobs:
             exit 0
           fi
           git commit -m "chore(data): daily FX refresh"
-          git push
+          git push || (git pull --rebase origin main && git push)
