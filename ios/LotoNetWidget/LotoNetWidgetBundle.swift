@@ -1,13 +1,9 @@
-import SwiftUI
 import WidgetKit
+import SwiftUI
 
 @main
 struct LotoNetWidgetBundle: WidgetBundle {
-    @WidgetBundleBuilder
     var body: some Widget {
-        LotoNetWidgetLegacy()
-        if #available(iOSApplicationExtension 17.0, *) {
-            LotoNetWidgetModern()
-        }
+        LotoNetWidget()
     }
 }

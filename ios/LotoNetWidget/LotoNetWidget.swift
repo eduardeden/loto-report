@@ -1,21 +1,31 @@
-import AppIntents
 import SwiftUI
 import WidgetKit
 
 struct JackpotEntry: TimelineEntry {
     let date: Date
-    let game: LotoGame
     let report: ReportResponse?
-    let metrics: GameMetrics?
 }
 
-private enum JackpotDataLoader {
-    static func placeholderEntry() -> JackpotEntry {
-        let mockMetrics = GameMetrics(grossRon: 1000000, taxRon: 100000, netRon: 900000, netEur: 180000, stale: false)
-        return JackpotEntry(date: Date(), game: .loto649, report: nil, metrics: mockMetrics)
+struct JackpotTimelineProvider: TimelineProvider {
+    func placeholder(in context: Context) -> JackpotEntry {
+        JackpotEntry(date: Date(), report: nil)
     }
 
-    static func loadEntry(for game: LotoGame) async -> JackpotEntry {
+    func getSnapshot(in context: Context, completion: @escaping (JackpotEntry) -> Void) {
+        Task {
+            completion(await loadEntry())
+        }
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<JackpotEntry>) -> Void) {
+        Task {
+            let entry = await loadEntry()
+            let refreshDate = nextRefreshDate(from: entry.report)
+            completion(Timeline(entries: [entry], policy: .after(refreshDate)))
+        }
+    }
+
+    private func loadEntry() async -> JackpotEntry {
         let store = ReportStore()
         var report = store.loadCachedReport()
 
@@ -28,15 +38,10 @@ private enum JackpotDataLoader {
             // Keep cache-only mode when network is unavailable.
         }
 
-        return JackpotEntry(
-            date: Date(),
-            game: game,
-            report: report,
-            metrics: report?.metrics(for: game)
-        )
+        return JackpotEntry(date: Date(), report: report)
     }
 
-    static func nextRefreshDate(from report: ReportResponse?) -> Date {
+    private func nextRefreshDate(from report: ReportResponse?) -> Date {
         let minimumGap = Date().addingTimeInterval(60 * 60)
         let fallback = Date().addingTimeInterval(6 * 60 * 60)
 
@@ -49,131 +54,59 @@ private enum JackpotDataLoader {
     }
 }
 
-@available(iOS 17.0, *)
-struct JackpotIntentTimelineProvider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> JackpotEntry {
-        JackpotDataLoader.placeholderEntry()
-    }
-
-    func snapshot(for configuration: GameSelectionIntent, in context: Context) async -> JackpotEntry {
-        await JackpotDataLoader.loadEntry(for: configuration.game?.game ?? .loto649)
-    }
-
-    func timeline(for configuration: GameSelectionIntent, in context: Context) async -> Timeline<JackpotEntry> {
-        let entry = await JackpotDataLoader.loadEntry(for: configuration.game?.game ?? .loto649)
-        let refreshDate = JackpotDataLoader.nextRefreshDate(from: entry.report)
-        return Timeline(entries: [entry], policy: .after(refreshDate))
-    }
-}
-
-struct JackpotLegacyTimelineProvider: TimelineProvider {
-    func placeholder(in context: Context) -> JackpotEntry {
-        JackpotDataLoader.placeholderEntry()
-    }
-
-    func getSnapshot(in context: Context, completion: @escaping (JackpotEntry) -> Void) {
-        Task {
-            let entry = await JackpotDataLoader.loadEntry(for: .loto649)
-            completion(entry)
-        }
-    }
-
-    func getTimeline(in context: Context, completion: @escaping (Timeline<JackpotEntry>) -> Void) {
-        Task {
-            let entry = await JackpotDataLoader.loadEntry(for: .loto649)
-            let refreshDate = JackpotDataLoader.nextRefreshDate(from: entry.report)
-            completion(Timeline(entries: [entry], policy: .after(refreshDate)))
-        }
-    }
-}
-
 struct LotoNetWidgetEntryView: View {
     let entry: JackpotEntry
 
     var body: some View {
+        let loto = entry.report?.metrics(for: .loto649)
+        let joker = entry.report?.metrics(for: .joker)
+
         VStack(alignment: .leading, spacing: 6) {
+            Text("Loto Report")
+                .font(.headline)
+
             HStack {
-                Text(entry.game.displayName)
-                    .font(.headline)
+                Text("6/49")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 Spacer()
-                if entry.metrics?.stale == true || entry.report?.stale == true {
-                    Text("STALE")
-                        .font(.caption2.bold())
-                        .foregroundStyle(.orange)
-                }
+                Text(DisplayFormatter.eur(loto?.netEur))
+                    .font(.caption.bold())
             }
 
-            Text(DisplayFormatter.eur(entry.metrics?.netEur))
-                .font(.title3.bold())
-                .minimumScaleFactor(0.8)
-
-            Text("Net EUR")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            HStack {
+                Text("Joker")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text(DisplayFormatter.eur(joker?.netEur))
+                    .font(.caption.bold())
+            }
 
             Divider()
 
             HStack {
-                Text("Brut")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(DisplayFormatter.ron(entry.metrics?.grossRon))
-                    .font(.caption)
-            }
-
-            HStack {
-                Text("Impozit")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(DisplayFormatter.ron(entry.metrics?.taxRon))
-                    .font(.caption)
-            }
-
-            HStack {
                 Text("Curs")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.secondary)
                 Spacer()
                 Text(DisplayFormatter.fx(entry.report?.eurRonRate))
-                    .font(.caption)
+                    .font(.caption2)
             }
         }
         .padding(12)
     }
 }
 
-@available(iOSApplicationExtension 17.0, *)
-struct LotoNetWidgetModern: Widget {
+struct LotoNetWidget: Widget {
     let kind: String = WidgetConstants.kind
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: GameSelectionIntent.self, provider: JackpotIntentTimelineProvider()) { entry in
+        StaticConfiguration(kind: kind, provider: JackpotTimelineProvider()) { entry in
             LotoNetWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Report NET Loto")
-        .description("Afiseaza reportul NET estimat pentru Loto 6/49 sau Joker.")
+        .description("Afiseaza reportul NET pentru Loto 6/49 si Joker.")
         .supportedFamilies([.systemSmall, .systemMedium])
-    }
-}
-
-struct LotoNetWidgetLegacy: Widget {
-    let kind: String = WidgetConstants.kind + ".legacy"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: JackpotLegacyTimelineProvider()) { entry in
-            LotoNetWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("Report NET Loto")
-        .description("Afiseaza reportul NET estimat pentru Loto 6/49.")
-        .supportedFamilies(supportedFamilies)
-    }
-
-    private var supportedFamilies: [WidgetFamily] {
-        if #available(iOSApplicationExtension 17.0, *) {
-            return []
-        }
-        return [.systemSmall, .systemMedium]
     }
 }
