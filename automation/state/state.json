@@ -1,0 +1,13 @@
+{
+  "last_successful": {
+    "loto649_gross_ron": "24787237.04",
+    "joker_gross_ron": "1831782.85",
+    "eur_ron_rate": "5.2088",
+    "fx_rate_date": "2026-05-15"
+  },
+  "timestamps": {
+    "loto_fetched_at_utc": "2026-05-17T18:50:10+00:00",
+    "fx_fetched_at_utc": "2026-05-17T18:50:10+00:00"
+  },
+  "updated_at_utc": "2026-05-17T18:50:10+00:00"
+}

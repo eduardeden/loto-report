@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02D40BEEDFB830FD1612F040 /* LotoReportWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0CF350F2012314ADF5B15685 /* LotoNetTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1904B1F3B3AEC868FFBEDED0 /* LotoNetTrackerApp.swift */; };
+		186F594602A179C9E3BEDD38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 708D17268F66DD10273B5BDD /* Preview Assets.xcassets */; };
+		1DA5851BC6AA46459285AF5F /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D652511D449766239E98B45 /* Formatting.swift */; };
+		330B2200EB606721880380A0 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D652511D449766239E98B45 /* Formatting.swift */; };
+		3CF72EF6F3AD32852CBD3FEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396937AD057A09F80F85B82 /* ContentView.swift */; };
+		460D3D2A90711E90A74334F5 /* ReportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C47E7FEA20D27800188EA4 /* ReportModels.swift */; };
+		5347EDBB9F1A180F0A781207 /* LotoNetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B91EAD405E5B9238D261F /* LotoNetWidget.swift */; };
+		6ECFA2CED2D98236DB48B9B5 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA98951C9D1BE215F291A0 /* ReportStore.swift */; };
+		845A5F7C0F2A037F6E61669C /* ReportConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */; };
+		9FF19D3ED04C008C69C5F85A /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */; };
+		A0A95506BBF2BC686E2E93B8 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */; };
+		A83E7CABBB998A341596B264 /* LotoNetWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF49184318A33F22C94B8CC /* LotoNetWidgetBundle.swift */; };
+		B44A3C8433A80D184B0B1882 /* ReportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C47E7FEA20D27800188EA4 /* ReportModels.swift */; };
+		B4C59B5B78093F26F35E6A07 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA98951C9D1BE215F291A0 /* ReportStore.swift */; };
+		C8CC7C4E045D1A1823B919D2 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E7B95B69387145A1FBB9 /* ReportViewModel.swift */; };
+		D35C3AE60C05B72B1A14D528 /* GameSelectionIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB24E69A6C692D43E490FC /* GameSelectionIntent.swift */; };
+		D79781BDA2CA83AA4882BA5D /* ReportConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */; };
+		E9A9472F2CF87D7EF17EACC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7687F5C1BA23B78BC20123EF /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E742DCA27FE905D4C517AF78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E37D355C3C961741309DFFC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 174E8E685CB2756466AE5AB8;
+			remoteInfo = LotoReportWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB7D105D39908BD355E3DAC3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				02D40BEEDFB830FD1612F040 /* LotoReportWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		020B91EAD405E5B9238D261F /* LotoNetWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotoNetWidget.swift; sourceTree = "<group>"; };
+		0FEA98951C9D1BE215F291A0 /* ReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStore.swift; sourceTree = "<group>"; };
+		1904B1F3B3AEC868FFBEDED0 /* LotoNetTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotoNetTrackerApp.swift; sourceTree = "<group>"; };
+		512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
+		56C47E7FEA20D27800188EA4 /* ReportModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModels.swift; sourceTree = "<group>"; };
+		5B2CD1D6BCC3F040B2EC66DD /* LotoReport.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LotoReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D652511D449766239E98B45 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		708D17268F66DD10273B5BDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7381E7B95B69387145A1FBB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
+		7687F5C1BA23B78BC20123EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LotoReportWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportConfig.swift; sourceTree = "<group>"; };
+		C0FB24E69A6C692D43E490FC /* GameSelectionIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionIntent.swift; sourceTree = "<group>"; };
+		C396937AD057A09F80F85B82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EFF49184318A33F22C94B8CC /* LotoNetWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotoNetWidgetBundle.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0348D61297E4D73831E80E41 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				6D652511D449766239E98B45 /* Formatting.swift */,
+				839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */,
+				56C47E7FEA20D27800188EA4 /* ReportModels.swift */,
+				0FEA98951C9D1BE215F291A0 /* ReportStore.swift */,
+				512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */,
+			);
+			name = Shared;
+			path = ios/Shared;
+			sourceTree = "<group>";
+		};
+		1D052A6357809CF82B5558AD /* LotoReport */ = {
+			isa = PBXGroup;
+			children = (
+				7687F5C1BA23B78BC20123EF /* Assets.xcassets */,
+			);
+			name = LotoReport;
+			path = ios/LotoReport;
+			sourceTree = "<group>";
+		};
+		21B6BB9BA5237C86266378AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B2CD1D6BCC3F040B2EC66DD /* LotoReport.app */,
+				7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4FEB502132DF84CA344ACBF5 /* LotoNetWidget */ = {
+			isa = PBXGroup;
+			children = (
+				C0FB24E69A6C692D43E490FC /* GameSelectionIntent.swift */,
+				020B91EAD405E5B9238D261F /* LotoNetWidget.swift */,
+				EFF49184318A33F22C94B8CC /* LotoNetWidgetBundle.swift */,
+			);
+			name = LotoNetWidget;
+			path = ios/LotoNetWidget;
+			sourceTree = "<group>";
+		};
+		6C7DFDB5DF2341A0A5AA69FC /* LotoNetTracker */ = {
+			isa = PBXGroup;
+			children = (
+				1904B1F3B3AEC868FFBEDED0 /* LotoNetTrackerApp.swift */,
+				A77EA9EE8C54904718F9C480 /* ViewModels */,
+				AF0B4045670BA38AE930D5D0 /* Views */,
+			);
+			name = LotoNetTracker;
+			path = ios/LotoNetTracker;
+			sourceTree = "<group>";
+		};
+		A77EA9EE8C54904718F9C480 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7381E7B95B69387145A1FBB9 /* ReportViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AF0B4045670BA38AE930D5D0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C396937AD057A09F80F85B82 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CA346691CFAC641DDFE75CF6 = {
+			isa = PBXGroup;
+			children = (
+				6C7DFDB5DF2341A0A5AA69FC /* LotoNetTracker */,
+				4FEB502132DF84CA344ACBF5 /* LotoNetWidget */,
+				1D052A6357809CF82B5558AD /* LotoReport */,
+				D0E17A8D8552366970E56BAE /* Preview Content */,
+				0348D61297E4D73831E80E41 /* Shared */,
+				21B6BB9BA5237C86266378AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0E17A8D8552366970E56BAE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				708D17268F66DD10273B5BDD /* Preview Assets.xcassets */,
+			);
+			name = "Preview Content";
+			path = "ios/LotoReport/Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		174E8E685CB2756466AE5AB8 /* LotoReportWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38CC4B84DF4F624CB4C363A9 /* Build configuration list for PBXNativeTarget "LotoReportWidget" */;
+			buildPhases = (
+				4868D4579CCA6904B1C2BA10 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LotoReportWidget;
+			packageProductDependencies = (
+			);
+			productName = LotoReportWidget;
+			productReference = 7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		81D8939AFBCBEBBDCC832362 /* LotoReport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C23719E66635F54AA411D77F /* Build configuration list for PBXNativeTarget "LotoReport" */;
+			buildPhases = (
+				0EB0CC49598E009FEDB11E61 /* Sources */,
+				B3469DBA0ED6DA889B96F001 /* Resources */,
+				BB7D105D39908BD355E3DAC3 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7516948CF967B9B4C08BD7E8 /* PBXTargetDependency */,
+			);
+			name = LotoReport;
+			packageProductDependencies = (
+			);
+			productName = LotoReport;
+			productReference = 5B2CD1D6BCC3F040B2EC66DD /* LotoReport.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E37D355C3C961741309DFFC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					174E8E685CB2756466AE5AB8 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					81D8939AFBCBEBBDCC832362 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 816936A8E848459EB6DE5A3E /* Build configuration list for PBXProject "LotoReport" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CA346691CFAC641DDFE75CF6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 21B6BB9BA5237C86266378AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81D8939AFBCBEBBDCC832362 /* LotoReport */,
+				174E8E685CB2756466AE5AB8 /* LotoReportWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B3469DBA0ED6DA889B96F001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9A9472F2CF87D7EF17EACC5 /* Assets.xcassets in Resources */,
+				186F594602A179C9E3BEDD38 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0EB0CC49598E009FEDB11E61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CF72EF6F3AD32852CBD3FEC /* ContentView.swift in Sources */,
+				330B2200EB606721880380A0 /* Formatting.swift in Sources */,
+				0CF350F2012314ADF5B15685 /* LotoNetTrackerApp.swift in Sources */,
+				D79781BDA2CA83AA4882BA5D /* ReportConfig.swift in Sources */,
+				B44A3C8433A80D184B0B1882 /* ReportModels.swift in Sources */,
+				6ECFA2CED2D98236DB48B9B5 /* ReportStore.swift in Sources */,
+				C8CC7C4E045D1A1823B919D2 /* ReportViewModel.swift in Sources */,
+				A0A95506BBF2BC686E2E93B8 /* WidgetConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4868D4579CCA6904B1C2BA10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DA5851BC6AA46459285AF5F /* Formatting.swift in Sources */,
+				D35C3AE60C05B72B1A14D528 /* GameSelectionIntent.swift in Sources */,
+				5347EDBB9F1A180F0A781207 /* LotoNetWidget.swift in Sources */,
+				A83E7CABBB998A341596B264 /* LotoNetWidgetBundle.swift in Sources */,
+				845A5F7C0F2A037F6E61669C /* ReportConfig.swift in Sources */,
+				460D3D2A90711E90A74334F5 /* ReportModels.swift in Sources */,
+				B4C59B5B78093F26F35E6A07 /* ReportStore.swift in Sources */,
+				9FF19D3ED04C008C69C5F85A /* WidgetConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7516948CF967B9B4C08BD7E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 174E8E685CB2756466AE5AB8 /* LotoReportWidget */;
+			targetProxy = E742DCA27FE905D4C517AF78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00FF68BF5F03717DDCFFCFE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ios/LotoReport/Support/LotoReport.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ios/LotoReport/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Loto Report";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport;
+				PRODUCT_NAME = "Loto Report";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		0CAEABC2572979A11E0C6BDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2DACF280A0373C4E0C886247 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ios/LotoReport/Support/LotoReport.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ios/LotoReport/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Loto Report";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport;
+				PRODUCT_NAME = "Loto Report";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		688DF9B8F14850E7E8E5C885 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ios/LotoReportWidget/Support/LotoReportWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ios/LotoReportWidget/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Loto Report Widget";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport.Widget;
+				PRODUCT_NAME = "Loto Report Widget";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9879EF904E9D47B6B374468E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = ios/LotoReportWidget/Support/LotoReportWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ios/LotoReportWidget/Support/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Loto Report Widget";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport.Widget;
+				PRODUCT_NAME = "Loto Report Widget";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EDC5E66EC1A288C2471B5EF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		38CC4B84DF4F624CB4C363A9 /* Build configuration list for PBXNativeTarget "LotoReportWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				688DF9B8F14850E7E8E5C885 /* Debug */,
+				9879EF904E9D47B6B374468E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		816936A8E848459EB6DE5A3E /* Build configuration list for PBXProject "LotoReport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CAEABC2572979A11E0C6BDC /* Debug */,
+				EDC5E66EC1A288C2471B5EF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C23719E66635F54AA411D77F /* Build configuration list for PBXNativeTarget "LotoReport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DACF280A0373C4E0C886247 /* Debug */,
+				00FF68BF5F03717DDCFFCFE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E37D355C3C961741309DFFC3 /* Project object */;
+}

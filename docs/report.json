@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-05-17T18:50:10+00:00",
+  "source_timestamps": {
+    "loto_fetched_at_utc": "2026-05-17T18:50:10+00:00",
+    "fx_fetched_at_utc": "2026-05-17T18:50:10+00:00",
+    "fx_rate_date": "2026-05-15"
+  },
+  "eur_ron_rate": 5.21,
+  "fx_rate_date": "2026-05-15",
+  "games": {
+    "loto649": {
+      "gross_ron": 24787237.04,
+      "tax_ron": 9899944.82,
+      "net_ron": 14887292.22,
+      "net_eur": 2858104.02,
+      "stale": false
+    },
+    "joker": {
+      "gross_ron": 1831782.85,
+      "tax_ron": 717763.14,
+      "net_ron": 1114019.71,
+      "net_eur": 213872.62,
+      "stale": false
+    }
+  },
+  "next_expected_update_at": "2026-05-17T19:07:00+00:00",
+  "update_reason": "manual",
+  "stale": false,
+  "errors": []
+}

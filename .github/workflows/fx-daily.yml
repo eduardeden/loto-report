@@ -1,0 +1,62 @@
+name: fx-daily-update
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 13:17 Europe/Bucharest during DST (UTC+3)
+    - cron: "17 10 * * *"
+    # 13:17 Europe/Bucharest during standard time (UTC+2)
+    - cron: "17 11 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  generate-fx-daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r automation/requirements.txt
+
+      - name: Validate local run window
+        id: window
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          now = datetime.now(ZoneInfo("Europe/Bucharest"))
+          valid = now.hour == 13 and 0 <= now.minute < 30
+          print(f"Local time: {now.isoformat()}")
+          print(f"Window valid: {valid}")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"should_run={'true' if valid else 'false'}\n")
+          PY
+
+      - name: Generate report.json
+        if: steps.window.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
+        run: python automation/run.py --mode fx_daily --state-path automation/state/state.json --report-path docs/report.json
+
+      - name: Commit and push report/state
+        if: steps.window.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/report.json automation/state/state.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(data): daily FX refresh"
+          git push

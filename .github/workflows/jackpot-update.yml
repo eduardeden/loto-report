@@ -1,0 +1,62 @@
+name: jackpot-update
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 22:07 Europe/Bucharest during DST (UTC+3)
+    - cron: "7 19 * * 0,4"
+    # 22:07 Europe/Bucharest during standard time (UTC+2)
+    - cron: "7 20 * * 0,4"
+
+permissions:
+  contents: write
+
+jobs:
+  generate-jackpot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r automation/requirements.txt
+
+      - name: Validate local run window
+        id: window
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          now = datetime.now(ZoneInfo("Europe/Bucharest"))
+          valid = now.weekday() in {3, 6} and now.hour == 22 and 0 <= now.minute < 20
+          print(f"Local time: {now.isoformat()}")
+          print(f"Window valid: {valid}")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as fh:
+              fh.write(f"should_run={'true' if valid else 'false'}\n")
+          PY
+
+      - name: Generate report.json
+        if: steps.window.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
+        run: python automation/run.py --mode jackpot --state-path automation/state/state.json --report-path docs/report.json
+
+      - name: Commit and push report/state
+        if: steps.window.outputs.should_run == 'true' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/report.json automation/state/state.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(data): update jackpot report"
+          git push
