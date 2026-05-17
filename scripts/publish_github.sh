@@ -48,9 +48,7 @@ gh api -X PUT "repos/${GITHUB_USER}/${REPO_NAME}/pages" \
 
 # Update app feed URL to the real Pages endpoint, then push.
 if ! rg -q "$REPORT_URL" "$REPORT_CONFIG"; then
-  perl -0pi -e 's#static let reportURL = URL\\(string: \".*?\"\\)!#static let reportURL = URL(string: \"'"$REPORT_URL"'\" )!#' "$REPORT_CONFIG"
-  # Normalize accidental extra whitespace from replacement.
-  perl -0pi -e 's/\"\\s+\\)\\!/\"\\)\\!/g' "$REPORT_CONFIG"
+  perl -0pi -e 's#static let reportURL = URL\\(string: \".*?\"\\)!#static let reportURL = URL(string: \"'"$REPORT_URL"'\")!#' "$REPORT_CONFIG"
   git add "$REPORT_CONFIG"
   if ! git diff --cached --quiet; then
     git commit -m "chore: set production report URL"
