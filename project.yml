@@ -23,11 +23,6 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         UIApplicationSupportsIndirectInputEvents: true
-    entitlements:
-      path: ios/LotoReport/Support/LotoReport.entitlements
-      properties:
-        com.apple.security.application-groups:
-          - group.com.eduardcramaroc.LotoReport
     sources:
       - path: ios/LotoNetTracker
       - path: ios/Shared
@@ -60,11 +55,6 @@ targets:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
           NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).LotoNetWidgetBundle"
-    entitlements:
-      path: ios/LotoReportWidget/Support/LotoReportWidget.entitlements
-      properties:
-        com.apple.security.application-groups:
-          - group.com.eduardcramaroc.LotoReport
     sources:
       - path: ios/LotoNetWidget
       - path: ios/Shared

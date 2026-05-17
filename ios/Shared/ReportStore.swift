@@ -12,10 +12,10 @@ struct ReportStore {
     private let etagKey = "cached_report_etag"
 
     init(
-        defaults: UserDefaults? = UserDefaults(suiteName: ReportConfig.appGroupIdentifier),
+        defaults: UserDefaults = .standard,
         bundle: Bundle = .main
     ) {
-        self.defaults = defaults ?? .standard
+        self.defaults = defaults
         self.bundle = bundle
     }
 
