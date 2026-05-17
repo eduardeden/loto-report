@@ -70,6 +70,7 @@ targets:
         CODE_SIGN_STYLE: Automatic
         APPLICATION_EXTENSION_API_ONLY: YES
         SKIP_INSTALL: YES
+        TARGETED_DEVICE_FAMILY: "1"
 schemes:
   Loto Report:
     build:
