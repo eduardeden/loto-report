@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-05-17T22:08:40+00:00",
+  "generated_at_utc": "2026-05-17T22:10:44+00:00",
   "source_timestamps": {
-    "loto_fetched_at_utc": "2026-05-17T18:50:10+00:00",
-    "fx_fetched_at_utc": "2026-05-17T22:08:40+00:00",
+    "loto_fetched_at_utc": "2026-05-17T22:10:44+00:00",
+    "fx_fetched_at_utc": "2026-05-17T22:10:44+00:00",
     "fx_rate_date": "2026-05-15"
   },
   "eur_ron_rate": 5.21,
@@ -24,7 +24,7 @@
     }
   },
   "next_expected_update_at": "2026-05-18T10:17:00+00:00",
-  "update_reason": "fx_daily",
+  "update_reason": "jackpot_schedule",
   "stale": false,
   "errors": []
 }
