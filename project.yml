@@ -37,8 +37,8 @@ targets:
         embed: true
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.eduardcramaroc.LotoReport
-        PRODUCT_NAME: "Loto Report"
+        PRODUCT_BUNDLE_IDENTIFIER: com.eduardcramaroc.lotoreport
+        PRODUCT_NAME: LotoReport
         INFOPLIST_KEY_CFBundleDisplayName: "Loto Report"
         CODE_SIGN_STYLE: Automatic
         TARGETED_DEVICE_FAMILY: "1"
@@ -64,8 +64,8 @@ targets:
       - ios/Shared/Resources/BootstrapReport.json
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.eduardcramaroc.LotoReport.Widget
-        PRODUCT_NAME: "Loto Report Widget"
+        PRODUCT_BUNDLE_IDENTIFIER: com.eduardcramaroc.lotoreport.widget
+        PRODUCT_NAME: LotoReportWidget
         INFOPLIST_KEY_CFBundleDisplayName: "Loto Report Widget"
         CODE_SIGN_STYLE: Automatic
         APPLICATION_EXTENSION_API_ONLY: YES

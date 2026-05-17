@@ -306,8 +306,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport;
-				PRODUCT_NAME = "Loto Report";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.lotoreport;
+				PRODUCT_NAME = LotoReport;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -391,8 +391,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport;
-				PRODUCT_NAME = "Loto Report";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.lotoreport;
+				PRODUCT_NAME = LotoReport;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -410,8 +410,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport.Widget;
-				PRODUCT_NAME = "Loto Report Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.lotoreport.widget;
+				PRODUCT_NAME = LotoReportWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,8 +430,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.LotoReport.Widget;
-				PRODUCT_NAME = "Loto Report Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardcramaroc.lotoreport.widget;
+				PRODUCT_NAME = LotoReportWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
