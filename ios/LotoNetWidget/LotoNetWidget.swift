@@ -17,11 +17,11 @@ struct JackpotTimelineProvider: AppIntentTimelineProvider {
     }
 
     func snapshot(for configuration: GameSelectionIntent, in context: Context) async -> JackpotEntry {
-        await loadEntry(for: configuration.game.game)
+        await loadEntry(for: configuration.game?.game ?? .loto649)
     }
 
     func timeline(for configuration: GameSelectionIntent, in context: Context) async -> Timeline<JackpotEntry> {
-        let entry = await loadEntry(for: configuration.game.game)
+        let entry = await loadEntry(for: configuration.game?.game ?? .loto649)
         let refreshDate = nextRefreshDate(from: entry.report)
         return Timeline(entries: [entry], policy: .after(refreshDate))
     }

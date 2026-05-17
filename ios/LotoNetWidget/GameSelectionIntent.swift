@@ -32,7 +32,7 @@ struct GameSelectionIntent: WidgetConfigurationIntent {
     static var description = IntentDescription("Alege ce report sa afiseze widget-ul.")
 
     @Parameter(title: "Joc")
-    var game: WidgetGameOption
+    var game: WidgetGameOption?
 
     init() {
         game = .loto649
