@@ -14,7 +14,7 @@ final class ReportViewModel: ObservableObject {
         self.report = store.loadCachedReport()
     }
 
-    func refresh() async {
+    func refresh(forceWidgetReload: Bool = false) async {
         isLoading = true
         defer { isLoading = false }
 
@@ -26,7 +26,7 @@ final class ReportViewModel: ObservableObject {
                 report = freshReport
                 errorMessage = nil
 
-                if hasMeaningfulChanges(old: current, new: freshReport) {
+                if forceWidgetReload || hasMeaningfulChanges(old: current, new: freshReport) {
                     WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
                 }
             } else if report == nil {

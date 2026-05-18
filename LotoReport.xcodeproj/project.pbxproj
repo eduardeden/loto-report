@@ -19,12 +19,14 @@
 		845A5F7C0F2A037F6E61669C /* ReportConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */; };
 		9FF19D3ED04C008C69C5F85A /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */; };
 		A0A95506BBF2BC686E2E93B8 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512F32E7A637EDD9954ADFA9 /* WidgetConstants.swift */; };
+		A6AC0274092E06290DEA9D5E /* CurrencyPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACF493947646721137EDBB /* CurrencyPreference.swift */; };
 		A83E7CABBB998A341596B264 /* LotoNetWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF49184318A33F22C94B8CC /* LotoNetWidgetBundle.swift */; };
 		B44A3C8433A80D184B0B1882 /* ReportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C47E7FEA20D27800188EA4 /* ReportModels.swift */; };
 		B4C59B5B78093F26F35E6A07 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA98951C9D1BE215F291A0 /* ReportStore.swift */; };
 		C8CC7C4E045D1A1823B919D2 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7381E7B95B69387145A1FBB9 /* ReportViewModel.swift */; };
 		D79781BDA2CA83AA4882BA5D /* ReportConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */; };
 		E9A9472F2CF87D7EF17EACC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7687F5C1BA23B78BC20123EF /* Assets.xcassets */; };
+		FEB4DA39A15483F8452C3ED5 /* CurrencyPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ACF493947646721137EDBB /* CurrencyPreference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,7 @@
 		708D17268F66DD10273B5BDD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7381E7B95B69387145A1FBB9 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		7687F5C1BA23B78BC20123EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		78ACF493947646721137EDBB /* CurrencyPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPreference.swift; sourceTree = "<group>"; };
 		7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LotoReportWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportConfig.swift; sourceTree = "<group>"; };
 		C396937AD057A09F80F85B82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		0348D61297E4D73831E80E41 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				78ACF493947646721137EDBB /* CurrencyPreference.swift */,
 				6D652511D449766239E98B45 /* Formatting.swift */,
 				839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */,
 				56C47E7FEA20D27800188EA4 /* ReportModels.swift */,
@@ -255,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF72EF6F3AD32852CBD3FEC /* ContentView.swift in Sources */,
+				FEB4DA39A15483F8452C3ED5 /* CurrencyPreference.swift in Sources */,
 				330B2200EB606721880380A0 /* Formatting.swift in Sources */,
 				0CF350F2012314ADF5B15685 /* LotoNetTrackerApp.swift in Sources */,
 				D79781BDA2CA83AA4882BA5D /* ReportConfig.swift in Sources */,
@@ -269,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AC0274092E06290DEA9D5E /* CurrencyPreference.swift in Sources */,
 				1DA5851BC6AA46459285AF5F /* Formatting.swift in Sources */,
 				5347EDBB9F1A180F0A781207 /* LotoNetWidget.swift in Sources */,
 				A83E7CABBB998A341596B264 /* LotoNetWidgetBundle.swift in Sources */,

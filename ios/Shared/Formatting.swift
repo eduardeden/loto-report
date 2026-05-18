@@ -43,6 +43,15 @@ enum DisplayFormatter {
         return plainFormatter.string(from: NSNumber(value: value)) ?? "-"
     }
 
+    static func money(_ value: Double?, currency: DisplayCurrency) -> String {
+        switch currency {
+        case .ron:
+            return ron(value)
+        case .eur:
+            return eur(value)
+        }
+    }
+
     static func dateTime(_ date: Date?) -> String {
         guard let date else { return "N/A" }
         return date.formatted(date: .abbreviated, time: .shortened)
