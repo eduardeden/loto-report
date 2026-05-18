@@ -82,7 +82,7 @@ struct LotoNetWidgetEntryView: View {
                 mediumLayout
             }
         }
-        .padding(12)
+        .padding(family == .systemSmall ? 9 : 12)
     }
 
     private var headerRow: some View {
@@ -112,28 +112,17 @@ struct LotoNetWidgetEntryView: View {
     }
 
     private var smallLayout: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Loto 6/49")
-                .font(.system(size: 11, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-            widgetValueRow(title: MonetaryMetric.gross.title, value: formattedAmount(lotoMetrics, metric: .gross), accent: Color(red: 0.99, green: 0.4, blue: 0.28))
-            widgetValueRow(title: MonetaryMetric.tax.title, value: formattedAmount(lotoMetrics, metric: .tax), accent: Color(red: 0.99, green: 0.4, blue: 0.28))
-            widgetValueRow(title: MonetaryMetric.net.title, value: formattedAmount(lotoMetrics, metric: .net), accent: Color(red: 0.99, green: 0.4, blue: 0.28))
-
-            Spacer(minLength: 0)
-
-            Text("BNR \(DisplayFormatter.fx(entry.report?.eurRonRate))")
-                .font(.system(size: 10, weight: .semibold, design: .rounded))
-                .foregroundStyle(Color.white.opacity(0.82))
-                .lineLimit(1)
+        VStack(alignment: .leading, spacing: 5) {
+            smallGameBlock(title: "🍀 6/49", metrics: lotoMetrics, accent: LotteryTheme.loto649)
+            smallGameBlock(title: "🤡 Joker", metrics: jokerMetrics, accent: LotteryTheme.joker)
         }
     }
 
     private var mediumLayout: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
-                compactTile(title: "Loto 6/49", metrics: lotoMetrics, accent: Color(red: 0.99, green: 0.4, blue: 0.28))
-                compactTile(title: "Joker", metrics: jokerMetrics, accent: Color(red: 0.2, green: 0.78, blue: 0.95))
+                compactTile(title: "🍀 Loto 6/49", metrics: lotoMetrics, accent: LotteryTheme.loto649)
+                compactTile(title: "🤡 Joker", metrics: jokerMetrics, accent: LotteryTheme.joker)
             }
 
             HStack {
@@ -149,20 +138,39 @@ struct LotoNetWidgetEntryView: View {
     }
 
     private func widgetValueRow(title: String, value: String, accent: Color) -> some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 5) {
             Circle()
                 .fill(accent)
-                .frame(width: 8, height: 8)
+                .frame(width: 6, height: 6)
             Text(title)
-                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .font(.system(size: 10, weight: .semibold, design: .rounded))
                 .foregroundStyle(Color.white.opacity(0.85))
+                .lineLimit(1)
             Spacer()
             Text(value)
-                .font(.system(size: 12, weight: .heavy, design: .rounded))
+                .font(.system(size: 10, weight: .heavy, design: .rounded))
                 .foregroundStyle(.white)
                 .lineLimit(1)
-                .minimumScaleFactor(0.72)
+                .minimumScaleFactor(0.62)
         }
+    }
+
+    private func smallGameBlock(title: String, metrics: GameMetrics?, accent: Color) -> some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text(title)
+                .font(.system(size: 10, weight: .bold, design: .rounded))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+            widgetValueRow(title: "B", value: formattedAmount(metrics, metric: .gross), accent: accent)
+            widgetValueRow(title: "I", value: formattedAmount(metrics, metric: .tax), accent: accent)
+            widgetValueRow(title: "N", value: formattedAmount(metrics, metric: .net), accent: accent)
+        }
+        .padding(.horizontal, 6)
+        .padding(.vertical, 4)
+        .background(
+            RoundedRectangle(cornerRadius: 9, style: .continuous)
+                .fill(accent.opacity(0.22))
+        )
     }
 
     private func compactTile(title: String, metrics: GameMetrics?, accent: Color) -> some View {
@@ -213,7 +221,7 @@ struct LotoNetWidgetEntryView: View {
 
     private func formattedAmount(_ metrics: GameMetrics?, metric: MonetaryMetric) -> String {
         let value = metrics?.amount(for: metric, currency: currency, fxRate: entry.report?.eurRonRate)
-        return DisplayFormatter.money(value, currency: currency)
+        return DisplayFormatter.wholeMoney(value, currency: currency)
     }
 
     private var isStale: Bool {

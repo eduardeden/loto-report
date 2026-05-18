@@ -10,10 +10,12 @@ struct ContentView: View {
         NavigationStack {
             GeometryReader { proxy in
                 let isLargeScreen = proxy.size.width >= 430 || proxy.size.height >= 920
+                let horizontalPadding: CGFloat = isLargeScreen ? 18 : 16
+                let contentWidth = max(proxy.size.width - horizontalPadding * 2, 0)
                 ZStack {
                     AppBackdropView()
 
-                    ScrollView(showsIndicators: false) {
+                    ScrollView(.vertical, showsIndicators: false) {
                         VStack(alignment: .leading, spacing: isLargeScreen ? 18 : 14) {
                             topBar(isLargeScreen: isLargeScreen)
 
@@ -44,11 +46,17 @@ struct ContentView: View {
                                 loadingCard
                             }
                         }
-                        .padding(.horizontal, isLargeScreen ? 22 : 16)
+                        .frame(width: contentWidth)
+                        .frame(minHeight: max(proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom, 0), alignment: .top)
+                        .padding(.horizontal, horizontalPadding)
                         .padding(.top, proxy.safeAreaInsets.top + 10)
                         .padding(.bottom, proxy.safeAreaInsets.bottom + 22)
                     }
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .clipped()
                 }
+                .frame(width: proxy.size.width, height: proxy.size.height)
+                .ignoresSafeArea()
                 .toolbar(.hidden, for: .navigationBar)
             }
             .refreshable {
@@ -98,9 +106,13 @@ struct ContentView: View {
                 Text("Loto Report")
                     .font(isLargeScreen ? .system(size: 36, weight: .heavy, design: .rounded) : .system(size: 30, weight: .heavy, design: .rounded))
                     .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.84)
                 Text("Brut, Impozit si Net in moneda selectata")
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(Color.white.opacity(0.86))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.82)
             }
 
             Spacer(minLength: 10)
@@ -185,8 +197,8 @@ private struct CurrencySwitchView: View {
 
     var body: some View {
         HStack(spacing: 8) {
-            switchButton(emoji: "🇷🇴", title: "RON", currency: .ron)
             switchButton(emoji: "🇪🇺", title: "EUR", currency: .eur)
+            switchButton(emoji: "🇷🇴", title: "RON", currency: .ron)
         }
         .padding(6)
         .background(
@@ -237,9 +249,8 @@ private struct GameCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: isLargeScreen ? 14 : 12) {
             HStack(spacing: 10) {
-                Image(systemName: game == .loto649 ? "ticket.fill" : "sparkles.rectangle.stack.fill")
-                    .font(.headline.weight(.bold))
-                    .foregroundStyle(Color.white)
+                Text(game == .loto649 ? "🍀" : "🤡")
+                    .font(.system(size: 18))
                     .frame(width: 34, height: 34)
                     .background(
                         Circle()
@@ -304,9 +315,9 @@ private struct GameCardView: View {
     private var accent: Color {
         switch game {
         case .loto649:
-            return Color(red: 0.98, green: 0.36, blue: 0.25)
+            return LotteryTheme.loto649
         case .joker:
-            return Color(red: 0.12, green: 0.78, blue: 0.95)
+            return LotteryTheme.joker
         }
     }
 
@@ -365,7 +376,7 @@ private struct SpotlightRow: View {
                     report.metrics(for: .loto649).amount(for: .net, currency: currency, fxRate: report.eurRonRate),
                     currency: currency
                 ),
-                accent: Color(red: 0.98, green: 0.36, blue: 0.25),
+                accent: LotteryTheme.loto649,
                 isLargeScreen: isLargeScreen
             )
             SpotlightCard(
@@ -374,7 +385,7 @@ private struct SpotlightRow: View {
                     report.metrics(for: .joker).amount(for: .net, currency: currency, fxRate: report.eurRonRate),
                     currency: currency
                 ),
-                accent: Color(red: 0.12, green: 0.78, blue: 0.95),
+                accent: LotteryTheme.joker,
                 isLargeScreen: isLargeScreen
             )
         }
@@ -401,7 +412,7 @@ private struct SpotlightCard: View {
         }
         .padding(.horizontal, 13)
         .padding(.vertical, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(
@@ -424,6 +435,7 @@ private struct AppBackdropView: View {
         ZStack {
             Image("background")
                 .resizable()
+                .interpolation(.high)
                 .scaledToFill()
                 .ignoresSafeArea()
 

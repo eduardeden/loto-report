@@ -1,8 +1,8 @@
 import Foundation
 
 enum DisplayCurrency: String, CaseIterable, Identifiable {
-    case ron
     case eur
+    case ron
 
     var id: String { rawValue }
 

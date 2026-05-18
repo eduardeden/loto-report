@@ -14,6 +14,8 @@
 		330B2200EB606721880380A0 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D652511D449766239E98B45 /* Formatting.swift */; };
 		3CF72EF6F3AD32852CBD3FEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C396937AD057A09F80F85B82 /* ContentView.swift */; };
 		460D3D2A90711E90A74334F5 /* ReportModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C47E7FEA20D27800188EA4 /* ReportModels.swift */; };
+		4B9DC40F8DC99C7D379815D2 /* LotteryTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91557B90A78C863362F3DCB2 /* LotteryTheme.swift */; };
+		4D6894DC19B95EB4A0593FA7 /* LotteryTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91557B90A78C863362F3DCB2 /* LotteryTheme.swift */; };
 		5347EDBB9F1A180F0A781207 /* LotoNetWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020B91EAD405E5B9238D261F /* LotoNetWidget.swift */; };
 		6ECFA2CED2D98236DB48B9B5 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FEA98951C9D1BE215F291A0 /* ReportStore.swift */; };
 		845A5F7C0F2A037F6E61669C /* ReportConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */; };
@@ -67,6 +69,7 @@
 		78ACF493947646721137EDBB /* CurrencyPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPreference.swift; sourceTree = "<group>"; };
 		7EC695CA8CF488A296F27977 /* LotoReportWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = LotoReportWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportConfig.swift; sourceTree = "<group>"; };
+		91557B90A78C863362F3DCB2 /* LotteryTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteryTheme.swift; sourceTree = "<group>"; };
 		C396937AD057A09F80F85B82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EFF49184318A33F22C94B8CC /* LotoNetWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotoNetWidgetBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +80,7 @@
 			children = (
 				78ACF493947646721137EDBB /* CurrencyPreference.swift */,
 				6D652511D449766239E98B45 /* Formatting.swift */,
+				91557B90A78C863362F3DCB2 /* LotteryTheme.swift */,
 				839D580A2F9C7D2FCD4C1AF5 /* ReportConfig.swift */,
 				56C47E7FEA20D27800188EA4 /* ReportModels.swift */,
 				0FEA98951C9D1BE215F291A0 /* ReportStore.swift */,
@@ -262,6 +266,7 @@
 				FEB4DA39A15483F8452C3ED5 /* CurrencyPreference.swift in Sources */,
 				330B2200EB606721880380A0 /* Formatting.swift in Sources */,
 				0CF350F2012314ADF5B15685 /* LotoNetTrackerApp.swift in Sources */,
+				4B9DC40F8DC99C7D379815D2 /* LotteryTheme.swift in Sources */,
 				D79781BDA2CA83AA4882BA5D /* ReportConfig.swift in Sources */,
 				B44A3C8433A80D184B0B1882 /* ReportModels.swift in Sources */,
 				6ECFA2CED2D98236DB48B9B5 /* ReportStore.swift in Sources */,
@@ -278,6 +283,7 @@
 				1DA5851BC6AA46459285AF5F /* Formatting.swift in Sources */,
 				5347EDBB9F1A180F0A781207 /* LotoNetWidget.swift in Sources */,
 				A83E7CABBB998A341596B264 /* LotoNetWidgetBundle.swift in Sources */,
+				4D6894DC19B95EB4A0593FA7 /* LotteryTheme.swift in Sources */,
 				845A5F7C0F2A037F6E61669C /* ReportConfig.swift in Sources */,
 				460D3D2A90711E90A74334F5 /* ReportModels.swift in Sources */,
 				B4C59B5B78093F26F35E6A07 /* ReportStore.swift in Sources */,

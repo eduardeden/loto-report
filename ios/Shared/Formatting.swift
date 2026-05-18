@@ -19,6 +19,24 @@ enum DisplayFormatter {
         return formatter
     }()
 
+    private static let ronWholeFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "RON"
+        formatter.maximumFractionDigits = 0
+        formatter.locale = Locale(identifier: "ro_RO")
+        return formatter
+    }()
+
+    private static let eurWholeFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "EUR"
+        formatter.maximumFractionDigits = 0
+        formatter.locale = Locale(identifier: "ro_RO")
+        return formatter
+    }()
+
     private static let plainFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -49,6 +67,18 @@ enum DisplayFormatter {
             return ron(value)
         case .eur:
             return eur(value)
+        }
+    }
+
+    static func wholeMoney(_ value: Double?, currency: DisplayCurrency) -> String {
+        guard let value else { return "-" }
+        let number = NSNumber(value: value)
+
+        switch currency {
+        case .ron:
+            return ronWholeFormatter.string(from: number) ?? "-"
+        case .eur:
+            return eurWholeFormatter.string(from: number) ?? "-"
         }
     }
 
