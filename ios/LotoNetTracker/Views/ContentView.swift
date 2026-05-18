@@ -7,82 +7,56 @@ struct ContentView: View {
     private var selectedCurrencyRawValue = DisplayCurrency.eur.rawValue
 
     var body: some View {
-        NavigationStack {
-            GeometryReader { proxy in
-                let isLargeScreen = proxy.size.width >= 430 || proxy.size.height >= 920
-                let horizontalPadding: CGFloat = isLargeScreen ? 18 : 16
-                let contentWidth = max(proxy.size.width - horizontalPadding * 2, 0)
-                ZStack {
-                    AppBackdropView()
+        GeometryReader { proxy in
+            let isLargeScreen = proxy.size.width >= 430 || proxy.size.height >= 900
+            let horizontalPadding: CGFloat = isLargeScreen ? 18 : 16
 
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(alignment: .leading, spacing: isLargeScreen ? 18 : 14) {
-                            topBar(isLargeScreen: isLargeScreen)
+            ZStack {
+                AppBackdropView()
 
-                            CurrencySwitchView(selection: currencyBinding)
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: isLargeScreen ? 12 : 10) {
+                        topBar(isLargeScreen: isLargeScreen)
+                        CurrencySwitchView(selection: currencyBinding)
 
-                            if let report = viewModel.report {
-                                SpotlightRow(
-                                    report: report,
-                                    currency: selectedCurrency,
-                                    isLargeScreen: isLargeScreen
-                                )
-                                GameCardView(
-                                    game: .loto649,
-                                    metrics: report.metrics(for: .loto649),
-                                    fxRate: report.eurRonRate,
-                                    currency: selectedCurrency,
-                                    isLargeScreen: isLargeScreen
-                                )
-                                GameCardView(
-                                    game: .joker,
-                                    metrics: report.metrics(for: .joker),
-                                    fxRate: report.eurRonRate,
-                                    currency: selectedCurrency,
-                                    isLargeScreen: isLargeScreen
-                                )
-                                sourceInfo(report: report)
-                            } else {
-                                loadingCard
-                            }
+                        if let report = viewModel.report {
+                            GameCardView(
+                                game: .loto649,
+                                metrics: report.metrics(for: .loto649),
+                                fxRate: report.eurRonRate,
+                                currency: selectedCurrency,
+                                isLargeScreen: isLargeScreen
+                            )
+                            GameCardView(
+                                game: .joker,
+                                metrics: report.metrics(for: .joker),
+                                fxRate: report.eurRonRate,
+                                currency: selectedCurrency,
+                                isLargeScreen: isLargeScreen
+                            )
+                            sourceInfo(report: report)
+                        } else if viewModel.isLoading {
+                            loadingCard
+                        } else {
+                            unavailableCard
                         }
-                        .frame(width: contentWidth)
-                        .frame(minHeight: max(proxy.size.height - proxy.safeAreaInsets.top - proxy.safeAreaInsets.bottom, 0), alignment: .top)
-                        .padding(.horizontal, horizontalPadding)
-                        .padding(.top, proxy.safeAreaInsets.top + 10)
-                        .padding(.bottom, proxy.safeAreaInsets.bottom + 22)
                     }
-                    .frame(width: proxy.size.width, height: proxy.size.height)
-                    .clipped()
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
+                    .padding(.horizontal, horizontalPadding)
+                    .padding(.top, proxy.safeAreaInsets.top + (isLargeScreen ? 6 : 4))
+                    .padding(.bottom, proxy.safeAreaInsets.bottom + 14)
                 }
-                .frame(width: proxy.size.width, height: proxy.size.height)
-                .ignoresSafeArea()
-                .toolbar(.hidden, for: .navigationBar)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .refreshable {
-                await viewModel.refresh(forceWidgetReload: true)
-            }
-            .task {
-                await viewModel.refresh()
-            }
-            .onChange(of: selectedCurrencyRawValue) { _ in
-                CurrencyPreferenceStore.save(selectedCurrency)
-                WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
-            }
-            .alert("Atentie", isPresented: Binding(
-                get: { viewModel.errorMessage != nil },
-                set: { newValue in
-                    if !newValue {
-                        viewModel.errorMessage = nil
-                    }
-                }
-            )) {
-                Button("OK", role: .cancel) {
-                    viewModel.errorMessage = nil
-                }
-            } message: {
-                Text(viewModel.errorMessage ?? "")
-            }
+            .frame(width: proxy.size.width, height: proxy.size.height)
+        }
+        .background(Color.black)
+        .task {
+            await viewModel.refresh()
+        }
+        .onChange(of: selectedCurrencyRawValue) { _ in
+            CurrencyPreferenceStore.save(selectedCurrency)
+            WidgetCenter.shared.reloadTimelines(ofKind: WidgetConstants.kind)
         }
     }
 
@@ -101,19 +75,13 @@ struct ContentView: View {
     }
 
     private func topBar(isLargeScreen: Bool) -> some View {
-        HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: 6) {
-                Text("Loto Report")
-                    .font(isLargeScreen ? .system(size: 36, weight: .heavy, design: .rounded) : .system(size: 30, weight: .heavy, design: .rounded))
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.84)
-                Text("Brut, Impozit si Net in moneda selectata")
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(Color.white.opacity(0.86))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.82)
-            }
+        HStack(alignment: .center, spacing: 12) {
+            Text("Loto Report")
+                .font(.system(size: isLargeScreen ? 33 : 29, weight: .black, design: .rounded))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.82)
+                .allowsTightening(true)
 
             Spacer(minLength: 10)
 
@@ -124,55 +92,69 @@ struct ContentView: View {
             } label: {
                 ZStack {
                     Circle()
-                        .fill(Color.white.opacity(0.16))
+                        .fill(Color.white.opacity(0.18))
                     if viewModel.isLoading {
                         ProgressView()
                             .tint(.white)
                     } else {
                         Image(systemName: "arrow.clockwise")
-                            .font(.title3.weight(.bold))
+                            .font(.system(size: 18, weight: .black))
                             .foregroundStyle(.white)
                     }
                 }
-                .frame(width: isLargeScreen ? 52 : 46, height: isLargeScreen ? 52 : 46)
+                .frame(width: isLargeScreen ? 46 : 42, height: isLargeScreen ? 46 : 42)
                 .overlay(
                     Circle()
-                        .stroke(Color.white.opacity(0.35), lineWidth: 1)
+                        .stroke(Color.white.opacity(0.32), lineWidth: 1)
                 )
+                .contentShape(Circle())
             }
             .buttonStyle(.plain)
             .disabled(viewModel.isLoading)
         }
+        .frame(maxWidth: .infinity)
+        .frame(height: isLargeScreen ? 48 : 44)
     }
 
     private func sourceInfo(report: ReportResponse) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Moneda activa: \(selectedCurrency.title)")
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.white)
-            Text("Curs BNR: \(DisplayFormatter.fx(report.eurRonRate)) EUR/RON")
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.white)
-            Text("Ultima actualizare: \(DisplayFormatter.dateTime(report.generatedAtDate))")
-                .font(.footnote)
-                .foregroundStyle(Color.white.opacity(0.82))
+        VStack(alignment: .leading, spacing: 7) {
+            infoRow(title: "Curs BNR:", value: "\(DisplayFormatter.fx(report.eurRonRate)) EUR/RON")
+            infoRow(title: "Ultima actualizare:", value: DisplayFormatter.dateTime(report.generatedAtDate))
 
             if report.stale {
-                Text("Datele pot fi partial expirate; se afiseaza ultima valoare valida.")
-                    .font(.footnote)
-                    .foregroundStyle(Color(red: 1, green: 0.78, blue: 0.34))
+                Text("Date partial expirate. Afisam ultima valoare valida.")
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(Color(red: 1, green: 0.82, blue: 0.42))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.78)
             }
         }
-        .padding(14)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color.black.opacity(0.35))
+            RoundedRectangle(cornerRadius: 17, style: .continuous)
+                .fill(Color.black.opacity(0.34))
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .stroke(Color.white.opacity(0.2), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 17, style: .continuous)
+                .stroke(Color.white.opacity(0.18), lineWidth: 1)
         )
+    }
+
+    private func infoRow(title: String, value: String) -> some View {
+        HStack(spacing: 8) {
+            Text(title)
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color.white.opacity(0.78))
+            Spacer(minLength: 8)
+            Text(value)
+                .font(.caption.weight(.bold))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.72)
+                .allowsTightening(true)
+        }
     }
 
     private var loadingCard: some View {
@@ -180,15 +162,27 @@ struct ContentView: View {
             ProgressView()
                 .tint(.white)
             Text("Se incarca datele...")
-                .font(.body.weight(.medium))
+                .font(.body.weight(.semibold))
                 .foregroundStyle(.white)
         }
-        .padding(18)
+        .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(Color.black.opacity(0.35))
+            RoundedRectangle(cornerRadius: 17, style: .continuous)
+                .fill(Color.black.opacity(0.34))
         )
+    }
+
+    private var unavailableCard: some View {
+        Text("Nu am putut incarca datele momentan.")
+            .font(.body.weight(.semibold))
+            .foregroundStyle(.white)
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 17, style: .continuous)
+                    .fill(Color.black.opacity(0.34))
+            )
     }
 }
 
@@ -196,18 +190,19 @@ private struct CurrencySwitchView: View {
     @Binding var selection: DisplayCurrency
 
     var body: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 6) {
             switchButton(emoji: "🇪🇺", title: "EUR", currency: .eur)
             switchButton(emoji: "🇷🇴", title: "RON", currency: .ron)
         }
-        .padding(6)
+        .padding(5)
+        .frame(maxWidth: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .fill(Color.black.opacity(0.35))
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color.black.opacity(0.34))
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .stroke(Color.white.opacity(0.24), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .stroke(Color.white.opacity(0.22), lineWidth: 1)
         )
     }
 
@@ -217,22 +212,22 @@ private struct CurrencySwitchView: View {
         return Button {
             selection = currency
         } label: {
-            HStack(spacing: 6) {
+            HStack(spacing: 7) {
                 Text(emoji)
-                    .font(.headline)
+                    .font(.system(size: 18))
                 Text(title)
-                    .font(.subheadline.weight(.bold))
+                    .font(.subheadline.weight(.black))
             }
             .foregroundStyle(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
             .background(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(isActive ? Color.white.opacity(0.28) : Color.clear)
+                RoundedRectangle(cornerRadius: 11, style: .continuous)
+                    .fill(isActive ? Color.white.opacity(0.25) : Color.clear)
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(isActive ? Color.white.opacity(0.42) : Color.clear, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 11, style: .continuous)
+                    .stroke(isActive ? Color.white.opacity(0.38) : Color.clear, lineWidth: 1)
             )
         }
         .buttonStyle(.plain)
@@ -247,45 +242,61 @@ private struct GameCardView: View {
     let isLargeScreen: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: isLargeScreen ? 14 : 12) {
+        VStack(alignment: .leading, spacing: isLargeScreen ? 11 : 10) {
             HStack(spacing: 10) {
                 Text(game == .loto649 ? "🍀" : "🤡")
-                    .font(.system(size: 18))
-                    .frame(width: 34, height: 34)
+                    .font(.system(size: 22))
+                    .frame(width: 40, height: 40)
                     .background(
                         Circle()
-                            .fill(accent.opacity(0.9))
+                            .fill(Color.white.opacity(0.96))
                     )
+                    .shadow(color: accent.opacity(0.26), radius: 8, x: 0, y: 4)
 
                 Text(game.displayName)
-                    .font(isLargeScreen ? .title2.weight(.heavy) : .title3.weight(.heavy))
+                    .font(.system(size: isLargeScreen ? 21 : 19, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
+                    .lineLimit(1)
 
                 Spacer(minLength: 8)
 
                 if metrics.stale {
                     Text("STALE")
-                        .font(.caption2.weight(.bold))
-                        .foregroundStyle(Color.black.opacity(0.85))
-                        .padding(.horizontal, 9)
+                        .font(.caption2.weight(.black))
+                        .foregroundStyle(Color.black.opacity(0.84))
+                        .padding(.horizontal, 8)
                         .padding(.vertical, 5)
-                        .background(Color(red: 1, green: 0.86, blue: 0.5))
+                        .background(Color(red: 1, green: 0.84, blue: 0.46))
                         .clipShape(Capsule())
                 }
             }
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text("NET \(currency.title)")
-                    .font(.caption.weight(.bold))
-                    .foregroundStyle(Color.white.opacity(0.75))
+                    .font(.caption.weight(.black))
+                    .foregroundStyle(Color.white.opacity(0.76))
                 Text(DisplayFormatter.money(metrics.amount(for: .net, currency: currency, fxRate: fxRate), currency: currency))
-                    .font(isLargeScreen ? .system(size: 36, weight: .heavy, design: .rounded) : .system(size: 32, weight: .heavy, design: .rounded))
+                    .font(.system(size: isLargeScreen ? 38 : 34, weight: .black, design: .rounded))
                     .foregroundStyle(.white)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.72)
+                    .minimumScaleFactor(0.58)
+                    .allowsTightening(true)
             }
+            .padding(.horizontal, 14)
+            .padding(.vertical, isLargeScreen ? 11 : 10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            colors: [accent.opacity(0.86), accent.opacity(0.34), Color.white.opacity(0.07)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            )
 
-            LazyVGrid(columns: gridColumns, spacing: 10) {
+            HStack(spacing: 8) {
                 MetricTile(
                     title: "\(MonetaryMetric.gross.title) \(currency.title)",
                     value: DisplayFormatter.money(metrics.amount(for: .gross, currency: currency, fxRate: fxRate), currency: currency)
@@ -294,21 +305,17 @@ private struct GameCardView: View {
                     title: "\(MonetaryMetric.tax.title) \(currency.title)",
                     value: DisplayFormatter.money(metrics.amount(for: .tax, currency: currency, fxRate: fxRate), currency: currency)
                 )
-                MetricTile(
-                    title: "\(MonetaryMetric.net.title) \(currency.title)",
-                    value: DisplayFormatter.money(metrics.amount(for: .net, currency: currency, fxRate: fxRate), currency: currency)
-                )
             }
         }
-        .padding(isLargeScreen ? 20 : 16)
+        .padding(isLargeScreen ? 15 : 14)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.black.opacity(0.34))
+            RoundedRectangle(cornerRadius: 21, style: .continuous)
+                .fill(Color.black.opacity(0.35))
         )
         .overlay(
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .stroke(borderGradient, lineWidth: 1.25)
+            RoundedRectangle(cornerRadius: 21, style: .continuous)
+                .stroke(borderGradient, lineWidth: 1.15)
         )
     }
 
@@ -323,17 +330,10 @@ private struct GameCardView: View {
 
     private var borderGradient: LinearGradient {
         LinearGradient(
-            colors: [accent.opacity(0.9), Color.white.opacity(0.45)],
+            colors: [accent.opacity(0.95), Color.white.opacity(0.36)],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
         )
-    }
-
-    private var gridColumns: [GridItem] {
-        [
-            GridItem(.flexible(minimum: 110), spacing: 10),
-            GridItem(.flexible(minimum: 110), spacing: 10)
-        ]
     }
 }
 
@@ -344,88 +344,22 @@ private struct MetricTile: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
-                .font(.caption2.weight(.semibold))
-                .foregroundStyle(Color.white.opacity(0.75))
+                .font(.caption2.weight(.bold))
+                .foregroundStyle(Color.white.opacity(0.72))
                 .lineLimit(1)
             Text(value)
-                .font(.subheadline.weight(.bold))
+                .font(.system(size: 15, weight: .black, design: .rounded))
                 .foregroundStyle(.white)
                 .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.52)
+                .allowsTightening(true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 10)
         .padding(.vertical, 9)
         .background(
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
+            RoundedRectangle(cornerRadius: 13, style: .continuous)
                 .fill(Color.white.opacity(0.12))
-        )
-    }
-}
-
-private struct SpotlightRow: View {
-    let report: ReportResponse
-    let currency: DisplayCurrency
-    let isLargeScreen: Bool
-
-    var body: some View {
-        HStack(spacing: 12) {
-            SpotlightCard(
-                title: "6/49 NET \(currency.title)",
-                value: DisplayFormatter.money(
-                    report.metrics(for: .loto649).amount(for: .net, currency: currency, fxRate: report.eurRonRate),
-                    currency: currency
-                ),
-                accent: LotteryTheme.loto649,
-                isLargeScreen: isLargeScreen
-            )
-            SpotlightCard(
-                title: "Joker NET \(currency.title)",
-                value: DisplayFormatter.money(
-                    report.metrics(for: .joker).amount(for: .net, currency: currency, fxRate: report.eurRonRate),
-                    currency: currency
-                ),
-                accent: LotteryTheme.joker,
-                isLargeScreen: isLargeScreen
-            )
-        }
-    }
-}
-
-private struct SpotlightCard: View {
-    let title: String
-    let value: String
-    let accent: Color
-    let isLargeScreen: Bool
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 7) {
-            Text(title)
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(Color.white.opacity(0.8))
-                .lineLimit(1)
-            Text(value)
-                .font(isLargeScreen ? .system(size: 23, weight: .heavy, design: .rounded) : .system(size: 20, weight: .heavy, design: .rounded))
-                .foregroundStyle(.white)
-                .lineLimit(1)
-                .minimumScaleFactor(0.72)
-        }
-        .padding(.horizontal, 13)
-        .padding(.vertical, 12)
-        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .fill(
-                    LinearGradient(
-                        colors: [accent.opacity(0.45), Color.black.opacity(0.4)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .stroke(Color.white.opacity(0.32), lineWidth: 1)
         )
     }
 }
@@ -435,15 +369,14 @@ private struct AppBackdropView: View {
         ZStack {
             Image("background")
                 .resizable()
-                .interpolation(.high)
                 .scaledToFill()
                 .ignoresSafeArea()
 
             LinearGradient(
                 colors: [
-                    Color.black.opacity(0.25),
-                    Color.black.opacity(0.62),
-                    Color(red: 0.06, green: 0.04, blue: 0.12).opacity(0.86)
+                    Color.black.opacity(0.18),
+                    Color.black.opacity(0.58),
+                    Color(red: 0.05, green: 0.035, blue: 0.11).opacity(0.9)
                 ],
                 startPoint: .top,
                 endPoint: .bottom

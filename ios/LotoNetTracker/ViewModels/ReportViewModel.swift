@@ -34,7 +34,7 @@ final class ReportViewModel: ObservableObject {
             }
         } catch {
             report = report ?? store.loadCachedReport()
-            errorMessage = "Nu am putut actualiza datele. Afisam ultima valoare disponibila."
+            errorMessage = report == nil ? "Nu am putut incarca datele momentan." : nil
         }
     }
 
